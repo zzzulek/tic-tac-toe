@@ -9,7 +9,8 @@ export class GameComponent implements OnInit {
 
     squares: any[];
     xIsNext: boolean;
-    winner: any[];
+    winner: string;
+    combination:any[];
 
     constructor () { }
 
@@ -39,8 +40,8 @@ export class GameComponent implements OnInit {
 
     cellStatus (i: number) {
 
-        if (this.winner != null && this.winner.hasOwnProperty('combination')) {
-            return (this.winner.combination).includes(i);
+        if (this.winner != null && this.combination != null) {
+            return this.combination.includes(i);
         }
 
         return false;
@@ -64,12 +65,9 @@ export class GameComponent implements OnInit {
             if (this.squares[a] &&
                 this.squares[a] === this.squares[b]&&
                 this.squares[a] === this.squares[c]) {
+                    this.combination = lines[i];
 
-                return {
-                    'player': this.squares[a],
-                    'combination': lines[i]
-                };
-
+                return this.squares[a];
             }
         }
         return null;
