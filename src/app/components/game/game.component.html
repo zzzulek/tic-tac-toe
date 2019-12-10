@@ -1,0 +1,5 @@
+<div class="board" [ngClass]="{'board_inactive': (this.winner != null)}">
+    <div class="board__inner">
+        <button *ngFor="let val of squares; let i = index" [value]="val" (click)="makeMove(i)" [ngClass]="{'board__cell_winning': cellStatus(i)}" class="board__cell"></button>
+    </div>
+</div>

@@ -1,0 +1,130 @@
+.board {
+    width:       100%;
+    height:      0;
+    padding-top: 100%;
+    position:    relative;
+    
+    &_inactive {
+        pointer-events: none;
+    }
+    
+    &:before,
+    &:after {
+        pointer-events: none;
+        content:      "";
+        position:      absolute;
+        box-sizing:   content-box;
+    }
+    
+    &:before {
+        width:        calc(~"33.33% - (20px / 3)");
+        top:          0;
+        bottom:       0;
+        border-left:  10px solid #eee;
+        border-right: 10px solid #eee;
+        left:         calc(~"33.33% - (20px / 3)");
+    }
+    &:after {
+        height:        calc(~"33.33% - 10px");
+        left:          0;
+        right:         0;
+        border-top:    10px solid #eee;
+        border-bottom: 10px solid #eee;
+        top:           calc(~"33.33% - 5px");
+    }
+    
+    &__inner {
+        position:        absolute;
+        display:         flex;
+        flex-wrap:       wrap;
+        justify-content: space-between;
+        width:           100%;
+        top:             0;
+        height:          100%;
+    }
+    
+    &__cell {
+        height:           0;
+        padding:          0;
+        padding-top:      calc(~"33.33% - (20px / 3)");
+        width:            calc(~"33.33% - (20px / 3)");
+        margin-bottom:    10px;
+        cursor:           pointer;
+        transition:       background-color .2s;
+        position:         relative;
+        display:          inline-block;
+        vertical-align:   top;
+        border:           0;
+        background-color: transparent;
+        box-sizing:       border-box;
+        
+        &:before,
+        &:after {
+            transition: background-color 1s, border-color 1s;
+        }
+
+        &_winning {
+            &[value='X'] {
+                &:before,
+                &:after {
+                    background-color: #666 !important;
+                }
+            }
+            &[value='O'] {
+                &:before,
+                &:after {
+                    border-color: #666 !important;
+                }
+            }
+        }
+        
+        &[value='X'] {
+            pointer-events: none;
+            
+            &:before,
+            &:after {
+                content:                   "";
+                height:                    10px;
+                background-color:          #ccc;
+                position:                  absolute;
+                top:                       50%;
+                margin-top:                -5px;
+                width:                     70%;
+                left:                      15%;
+                animation-duration:        .2s;
+                animation-fill-mode:       forwards;
+                animation-timing-function: ease;
+            }
+            
+            &:before {
+                transform: rotate(45deg);
+            }
+            
+            &:after {
+                transform: rotate(-45deg);
+            }
+            
+        }
+        
+        &[value='O'] {
+            pointer-events: none;
+            
+            &:after {
+                content:       "";
+                
+                // Visual compensation
+                width:         62%;
+                height:        62%;
+
+                box-sizing:    border-box;
+                left:          19%;
+                top:           19%;
+                border:        10px solid #ccc;
+                border-radius: 50%;
+                position:      absolute;
+            }
+        }
+        
+    }
+    
+}

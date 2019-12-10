@@ -1,0 +1,69 @@
+# Tic Tac Toe
+
+The object of this task is to create a game of tic tac toe using the latest version of Angular. Create the views below and reply with a link to a public repository with your solution. Please submit your response within one week of receiving the task, and get in touch if you have any questions. Include a discussion of anything that you found challenging, explanation of design decisions you took and what you would add given more time. You needn't spend more than a few hours on this, we are more interested in seeing how you approach the task than receiving a finished product.
+
+1. Login View
+
+This view allows a user with credentials to log in. If a user is already logged in, this view should redirect them to the Home view. Appropriate error messages should be displayed if the user attempts to login with incorrect credentials.
+
+2. Signup View
+
+This view allows a user to sign up. If a user is already logged in, this view should redirect them to the Home view. Appropriate error messages should be displayed if the user attempts to signup with invalid details. An email address and password of at least 8 characters is required to sign up.
+
+3. Home View
+
+This view is the dashboard for a logged in user. If a user is not logged in, they should be redirected to the Login View. This view should use the API to retrieve game details from the server. The view should display:
+
+- the number of games played
+- the number of games won
+- the number of games lost
+
+From this view, the user should be able to log out or start a new game. If a user logs out, they should be taken to the Login View. If they choose to start a game, they should be taken to the Game View.
+
+4. Game View
+
+This view allows the user to play a game of tic-tac-toe against an AI player. A 3 by 3 grid should be displayed for the user to interact with. The AI can be as simple or complex as you like. After each game, the user can choose to replay or return to the Home View. The result of the game should be saved via the API.
+
+5. Authentication
+
+The app should use AWS Cognito for authentication. User sessions should persist when the user refreshes the page. The required UserPoolId and ClientId are provided below:
+
+UserPoolId: "us-east-1_qRdMI4QGp"
+ClientId: "193l2qgeu9o51qpmboddhda5kk"
+
+6. API
+
+All API calls require authentication, and should be called using the jwtToken in the Cognito session idToken as the "Authorization" request header. Also include the "Content-Type" header with the value "application/json". The following API endpoints should be used to save and retrieve user information:
+
+Save a game by sending a POST request to the following URL, indicating whether the winner is either "user", "opponent" or "draw".
+
+POST https://p8iyqk0j8h.execute-api.us-east-1.amazonaws.com/dev/games
+
+REQUEST BODY
+
+{
+	"winner": "user" | "opponent" | "draw"
+}
+
+RESPONSE
+
+{
+	success: true
+}
+
+---
+
+Retrieve games by sending a GET request to the following URL.
+
+GET https://p8iyqk0j8h.execute-api.us-east-1.amazonaws.com/dev/games
+
+RESPONSE
+
+{
+	"games": [
+		{
+			"created": "2019-11-15T16:23:40.000Z",
+			"winner": "user" | "opponent" | "draw"
+		}
+	]
+}
