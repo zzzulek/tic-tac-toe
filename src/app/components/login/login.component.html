@@ -1,4 +1,4 @@
-<div class="form">
+<!-- <div class="form">
     <div class="box">
         <input class="input input_block" type="email" required placeholder="E-mail" autofocus>
     </div>
@@ -8,4 +8,24 @@
     <div class="box">
         <button type="submit" class="button">Log in</button>
     </div>
+</div> -->
+
+
+<div class="form">
+    <form (ngSubmit)="onSubmit(f)" #f="ngForm">
+        <div class="box">
+            <input class="input input_block" type="email" name="email" id="email" ngModel required placeholder="E-mail" autofocus>
+        </div>
+        <div class="box">
+            <input class="input input_block" type="password" required name="password" id="password" ngModel value="" placeholder="Password">
+        </div>
+        <div class="box">
+            <button type="submit" class="button">Log in</button>
+        </div>
+    </form>
+    <div *ngIf="emailVerificationMessage">
+      <div>
+        Could not log you in.  Please verify your email and then attempt to sign in.
+      </div>
+  </div>
 </div>

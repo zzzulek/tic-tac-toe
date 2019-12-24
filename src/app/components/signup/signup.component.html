@@ -1,17 +1,31 @@
 <div class="form">
-    <div class="box">
-        <input class="input input_block" type="text" placeholder="Your name" autofocus>
-    </div>
-    <div class="box">
-        <input class="input input_block" type="email" required placeholder="E-mail">
-    </div>
-    <div class="box">
-        <input class="input input_block" type="password" name="password" value="" required min="8" placeholder="New password">
-    </div>
-    <div class="box">
-        <input class="input input_block" type="password" name="password" value="" required placeholder="Repeat password">
-    </div>
-    <div class="box">
-        <button type="submit" class="button">Register</button>
-    </div>
+    <form (ngSubmit)="register(regform)" #regform="ngForm">
+        <!-- <div class="box">
+            <input class="input input_block" type="text" placeholder="Your name" autofocus>
+        </div> -->
+        <div class="box">
+            <input class="input input_block" type="email" name="email" id="email" ngModel required placeholder="E-mail">
+        </div>
+        <div class="box">
+            <input class="input input_block" type="password" name="password" id="password" ngModel value="" required min="8" placeholder="New password">
+        </div>
+        <!-- <div class="box">
+            <input class="input input_block" type="password" value="" required placeholder="Repeat password">
+        </div> -->
+        <div class="box">
+            <button type="submit" class="button">Register</button>
+        </div>
+    </form>
+    <div *ngIf="confirmCode">
+    <h3>Please check your email for the validation code and enter it here:</h3>
+
+      <form (ngSubmit)="validateAuthCode(codeform)" #codeform="ngForm">
+          <input type="text" name="code" id="code" ngModel required placeholder="Code">
+        <button type="submit">Validate Code</button>
+      </form>
+
+  </div>
+  <div *ngIf="codeWasConfirmed">
+    <h3>Verification Code was confirmed, please click <a routerLink="/login">here</a> to login</h3>
+  </div>
 </div>
