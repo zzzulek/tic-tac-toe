@@ -1,8 +1,9 @@
 <nav class="nav">
-    <a class="nav__link link" routerLinkActive="link_active" routerLink="game">1. Game</a>
-    <a class="nav__link link" routerLinkActive="link_active" routerLink="home">2. Scores</a>
-    <a class="nav__link link" routerLinkActive="link_active" routerLink="login">3. Login</a>
-    <a class="nav__link link" routerLinkActive="link_active" routerLink="signup">4. Signup</a>
+    <a class="nav__link link" routerLinkActive="link_active" *ngIf="_auth.isLoggedIn()" routerLink="game">1. Game</a>
+    <a class="nav__link link" routerLinkActive="link_active" [routerLinkActiveOptions]="{exact: true}" *ngIf="_auth.isLoggedIn()" routerLink="home">2. Scores</a>
+    <a class="nav__link link" routerLinkActive="link_active" *ngIf="!_auth.isLoggedIn()" routerLink="login">3. Login</a>
+    <a class="nav__link link" routerLinkActive="link_active" *ngIf="!_auth.isLoggedIn()" routerLink="signup">4. Signup</a>
+    <a class="nav__link link" *ngIf="_auth.isLoggedIn()" href="javascript:void(0)" (click)="doLogout()">Logout</a>
 </nav>
 <main class="fullscreen">
     <router-outlet></router-outlet>
