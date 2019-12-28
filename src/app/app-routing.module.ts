@@ -7,7 +7,7 @@ import { SignupComponent } from './components/signup/signup.component';
 import { LoginGuard } from './login.guard';
 
 const routes: Routes = [
-    { path:  '', component:  HomeComponent, canActivate: [LoginGuard]},
+    { path:  '', redirectTo: 'home', pathMatch: 'full', canActivate: [LoginGuard]},
     { path:  'home', component:  HomeComponent, canActivate: [LoginGuard]},
     { path:  'login', component:  LoginComponent},
     { path:  'signup', component:  SignupComponent},
